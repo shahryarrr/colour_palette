@@ -170,3 +170,26 @@ function randomItem(items) {
         generateNewPalette(5);
       }
     }
+  
+    // SHOW COLOUR PALETTE ON THE PAGE
+    for (let i = 0; i < colourItems.length; i++) {
+      const name = colourItems[i].querySelector(".name");
+      name.innerText = colourPalette[i];
+      colourItems[i].style.background = colourPalette[i];
+    }
+  }
+  
+  // CHANGE ONE COLOUR
+  function updatePalette(elem) {
+    const paletteIndex = [...colourGrid.children].indexOf(elem);
+  
+    colourPalette[paletteIndex] = randomItem(namedColours);
+  
+    // UPDATE COLOUR ON THE PAGE
+    const name = elem.querySelector(".name");
+    name.innerText = colourPalette[paletteIndex];
+    elem.style.background = colourPalette[paletteIndex];
+  }
+  
+  generateNewPalette(5);
+  
