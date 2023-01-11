@@ -63,7 +63,7 @@ header {
 
 .generateBtn:hover {
     background: black;
-    colour: white;
+    color: white;
     cursor: pointer;
 }
 

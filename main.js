@@ -1,142 +1,172 @@
+let colourPalette = []
 
+const colourGrid = document.querySelector(".colour-grid");
+const colourItems = document.querySelectorAll(".colour-grid .colour");
 
-const namedColors = [
-Maroon
-DarkRed
-Fire Brick
-Red
-Salmon
-Tomato
-Coral
-OrangeRed
-Chocolate
-Sandy Brown
-Dark Orange
-Orange
-DarkGoldenrod
-Goldenrod
-Gold
-Olive
-Yellow
-Yellow Green
-Green Yellow
-Chartreuse
-Lawn Green
-Green
-Lime
-Lime Green
-Spring Green
-Medium Spring Green
-Turquoise
-LightSeaGreen
-MediumTurquoise
-Dark Cyan
-Aqua
-Dark Turquoise
-Deep Sky Blue
-Dodger Blue
-Royal Blue
-Navy
-Dark Blue
-Medium Blue
-Blue
-Blue Violet
-Dark Orchid
-Dark Violet
-Purple
-Dark Magenta
-Magenta
-Medium Violet Red
-Deep Pink
-Hot Pink
-Crimson
-Brown
-Indian Red
-Rosy Brown
-Light Coral
-Snow
-Misty Rose
-Dark Salmon
-Light Salmon
-Sienna
-Sea Shell
-Saddle Brown
-Peachpuff
-Peru
-Linen
-Bisque
-Burlywood
-Tan
-Antique White
-Navajo White
-Blanched Almond
-Papaya Whip
-Moccasin
-Wheat
-Oldlace
-FloralWhite
-Cornsilk
-Khaki
-Lemon Chiffon
-Pale Goldenrod
-Dark Khaki
-Beige
-Light Goldenrod Yellow
-Light Yellow
-Ivory
-Olive Drab
-Dark Olive Green
-Dark Sea Green
-Dark Green
-ForestGreen
-Light Green
-PaleGreen
-Honeydew
-Sea Green
-Medium Sea Green
-Mintcream
-Medium Aquamarine
-Aquamarine
-Dark Slate Gray
-Pale Turquoise
-Light Cyan
-Azure
-Cadet Blue
-Powder Blue
-Light Blue
-Sky Blue
-Lightsky Blue
-Steel Blue
-Alice Blue
-Slate Gray
-Light Slate Gray
-Lightsteel Blue
-Cornflower Blue
-Lavender
-Ghost White
-Midnight Blue
-Slate Blue
-Dark Slate Blue
-Medium Slate Blue
-Medium Purple
-Indigo
-Medium Orchid
-Plum
-Violet
-Thistle
-Orchid
-LavenderB lush
-Pale Violet Red
-Pink
-LightPink
-Black
-DimGray
-Gray
-Dark Gray
-Silver
-Light Grey
-Gainsboro
-White Smoke
-White
-
+const namedColours = [
+    "aliceblue",
+    "antiquewhite",
+    "aqua",
+    "aquamarine",
+    "azure",
+    "beige",
+    "bisque",
+    "black",
+    "blanchedalmond",
+    "blue",
+    "blueviolet",
+    "brown",
+    "burlywood",
+    "cadetblue",
+    "chartreuse",
+    "chocolate",
+    "coral",
+    "cornflowerblue",
+    "cornsilk",
+    "crimson",
+    "cyan",
+    "darkblue",
+    "darkcyan",
+    "darkgoldenrod",
+    "darkgray",
+    "darkgreen",
+    "darkgrey",
+    "darkkhaki",
+    "darkmagenta",
+    "darkolivegreen",
+    "darkorange",
+    "darkorchid",
+    "darkred",
+    "darksalmon",
+    "darkseagreen",
+    "darkslateblue",
+    "darkslategray",
+    "darkslategrey",
+    "darkturquoise",
+    "darkviolet",
+    "deeppink",
+    "deepskyblue",
+    "dimgray",
+    "dimgrey",
+    "dodgerblue",
+    "firebrick",
+    "floralwhite",
+    "forestgreen",
+    "fuchsia",
+    "gainsboro",
+    "ghostwhite",
+    "gold",
+    "goldenrod",
+    "gray",
+    "grey",
+    "green",
+    "greenyellow",
+    "honeydew",
+    "hotpink",
+    "indianred",
+    "indigo",
+    "ivory",
+    "khaki",
+    "lavender",
+    "lavenderblush",
+    "lawngreen",
+    "lemonchiffon",
+    "lightblue",
+    "lightcoral",
+    "lightcyan",
+    "lightgoldenrodyellow",
+    "lightgray",
+    "lightgreen",
+    "lightgrey",
+    "lightpink",
+    "lightsalmon",
+    "lightseagreen",
+    "lightskyblue",
+    "lightslategray",
+    "lightslategrey",
+    "lightsteelblue",
+    "lightyellow",
+    "lime",
+    "limegreen",
+    "linen",
+    "magenta",
+    "maroon",
+    "mediumaquamarine",
+    "mediumblue",
+    "mediumorchid",
+    "mediumpurple",
+    "mediumseagreen",
+    "mediumslateblue",
+    "mediumspringgreen",
+    "mediumturquoise",
+    "mediumvioletred",
+    "midnightblue",
+    "mintcream",
+    "mistyrose",
+    "moccasin",
+    "navajowhite",
+    "navy",
+    "oldlace",
+    "olive",
+    "olivedrab",
+    "orange",
+    "orangered",
+    "orchid",
+    "palegoldenrod",
+    "palegreen",
+    "paleturquoise",
+    "palevioletred",
+    "papayawhip",
+    "peachpuff",
+    "peru",
+    "pink",
+    "plum",
+    "powderblue",
+    "purple",
+    "rebeccapurple",
+    "red",
+    "rosybrown",
+    "royalblue",
+    "saddlebrown",
+    "salmon",
+    "sandybrown",
+    "seagreen",
+    "seashell",
+    "sienna",
+    "silver",
+    "skyblue",
+    "slateblue",
+    "slategray",
+    "slategrey",
+    "snow",
+    "springgreen",
+    "steelblue",
+    "tan",
+    "teal",
+    "thistle",
+    "tomato",
+    "turquoise",
+    "violet",
+    "wheat",
+    "white",
+    "whitesmoke",
+    "yellow",
+    "yellowgreen",
 ]
+
+/// GET RANDOM COLOUR
+function randomItem(items) {
+    return items[Math.floor(Math.random() * items.length)];
+  }
+  
+  // GENERATE COLOUR PALETTE
+  function generateNewPalette(numColours) {
+    colourPalette = [];
+  
+    for (let i = 0; i < numColours; i++) {
+      if (!colourPalette.includes(randomItem(namedColours))) {
+        colourPalette.push(randomItem(namedColours));
+      } else {
+        generateNewPalette(5);
+      }
+    }
